@@ -1,6 +1,7 @@
 package ch.bbw.entities;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -27,6 +28,7 @@ public class Person {
     @Temporal(TemporalType.DATE)
     @Past(message = "Birthdate should be in the past")
     @NotNull(message = "Birthdate should not be null")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthdate;
 
     @NotNull(message = "Gender should not be null")

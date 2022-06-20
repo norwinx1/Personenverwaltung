@@ -5,6 +5,7 @@ import ch.bbw.repositories.PersonRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +28,7 @@ public class PersonService {
         return person.orElseGet(Person::new);
     }
 
-    public void addPerson(Person person) {
+    public void addPerson(@Valid Person person) {
         personRepository.save(person);
     }
 }
