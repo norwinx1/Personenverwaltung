@@ -17,9 +17,10 @@
                 <div class="col-12">
                     <br/>
                     <h1>Personenverwaltung</h1>
+                    <h2><a href="/person">Neue Person erstellen</a></h2>
 
                     <div th:each="person : ${persons}">
-                        <a th:href="@{/persons/{id}(id = ${person.id})}"><h2 th:text="${person.firstname + ' ' + person.lastname}"></h2></a>
+                        <a th:href="@{/persons/{id}(id = ${person.id})}"><h3 th:text="${person.firstname + ' ' + person.lastname}"></h3></a>
                         <p th:text="${person.email}"></p>
                         <p th:text="${person.birthdate}"></p>
                         <p th:text="${person.gender}"></p>

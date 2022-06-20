@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
+
 @Controller
 @AllArgsConstructor
 public class MainController {
@@ -21,6 +23,18 @@ public class MainController {
         return "persons";
     }
 
+    @GetMapping("/person")
+    public String newPerson(Model model) {
+        model.addAttribute("person", new Person());
+        return "person";
+    }
+
+    @PostMapping("/person")
+    public String addNewPerson(@ModelAttribute @Valid Person person) {
+        personService.addPerson(person);
+        return "redirect:/persons";
+    }
+
     @GetMapping("/persons/{id}")
     public String person(Model model, @PathVariable int id) {
         model.addAttribute("person", personService.getPerson(id));
@@ -28,7 +42,7 @@ public class MainController {
     }
 
     @PostMapping("/person/{id}")
-    public String changePerson(@ModelAttribute Person person, @PathVariable int id) {
+    public String changePerson(@ModelAttribute @Valid Person person, @PathVariable int id) {
         person.setId(id);
         personService.addPerson(person);
         return "redirect:/persons";
