@@ -1,11 +1,11 @@
 package ch.bbw.controllers;
 
+import ch.bbw.entities.Person;
 import ch.bbw.services.PersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @AllArgsConstructor
@@ -22,5 +22,11 @@ public class MainController {
     public String person(Model model, @PathVariable int id) {
         model.addAttribute("person", personService.getPerson(id));
         return "person";
+    }
+
+    @PostMapping("/person")
+    public String changePerson(@ModelAttribute Person person) {
+        personService.addPerson(person);
+        return "persons";
     }
 }
