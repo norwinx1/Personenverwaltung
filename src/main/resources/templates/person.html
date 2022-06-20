@@ -16,14 +16,7 @@
             <div class="row">
                 <div class="col-12">
                     <br/>
-                    <h1>Personenverwaltung</h1>
-
-                    <div th:each="person : ${persons}">
-                        <a th:href="@{/persons/{id}(id = ${person.id})}"><h2 th:text="${person.firstname + ' ' + person.lastname}"></h2></a>
-                        <p th:text="${person.email}"></p>
-                        <p th:text="${person.birthdate}"></p>
-                        <p th:text="${person.gender}"></p>
-                    </div>
+                    <h1 th:text="${person.firstname + ' ' + person.lastname}"></h1>
                 </div>
             </div>
         </div>
