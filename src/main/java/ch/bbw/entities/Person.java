@@ -26,9 +26,9 @@ public class Person {
 
     @Temporal(TemporalType.DATE)
     @Past(message = "Birthdate should be in the past")
-    @NotNull
+    @NotNull(message = "Birthdate should not be null")
     private Date birthdate;
 
-    @NotBlank
+    @NotNull(message = "Gender should not be null")
     private char gender;
 }

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @Controller
 @AllArgsConstructor
 public class MainController {
@@ -25,7 +27,7 @@ public class MainController {
     }
 
     @PostMapping("/person")
-    public String changePerson(@ModelAttribute Person person) {
+    public String changePerson(@ModelAttribute @Valid Person person) {
         personService.addPerson(person);
         return "persons";
     }
