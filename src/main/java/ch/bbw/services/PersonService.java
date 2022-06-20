@@ -31,4 +31,8 @@ public class PersonService {
     public void addPerson(@Valid Person person) {
         personRepository.save(person);
     }
+
+    public void deletePerson(int id) {
+        personRepository.deleteById(id);
+    }
 }

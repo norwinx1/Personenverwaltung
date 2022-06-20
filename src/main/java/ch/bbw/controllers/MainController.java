@@ -5,10 +5,7 @@ import ch.bbw.services.PersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -45,6 +42,12 @@ public class MainController {
     public String changePerson(@ModelAttribute @Valid Person person, @PathVariable int id) {
         person.setId(id);
         personService.addPerson(person);
+        return "redirect:/persons";
+    }
+
+    @PostMapping("/person/{id}/delete")
+    public String deletePerson(@PathVariable int id) {
+        personService.deletePerson(id);
         return "redirect:/persons";
     }
 }
