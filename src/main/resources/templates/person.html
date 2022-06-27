@@ -21,26 +21,31 @@
             <div class="row">
                 <div class="col-12">
                     <br/>
-                    <form th:action="@{'/person/' + ${person.id}}" th:object="${person}" method="post">
+                    <form th:action="@{/person}" th:object="${person}" method="post">
+                        <input type="hidden" th:field="*{id}">
                         <div class="form-group">
                             <label for="firstname">Firstname</label>
                             <input type="text" class="form-control" id="firstname" placeholder="Enter firstname"
                                    th:field="*{firstname}">
+                            <p th:if= "${#fields.hasErrors('firstname')}" th:errors= "*{firstname}" >Firstname Error</p>
                         </div>
                         <div class="form-group">
                             <label for="lastname">Lastname</label>
                             <input type="text" class="form-control" id="lastname" placeholder="Enter lastname"
                                    th:field="*{lastname}">
+                            <p th:if= "${#fields.hasErrors('lastname')}" th:errors= "*{lastname}" >Lastname Error</p>
                         </div>
                         <div class="form-group">
                             <label for="email">Email address</label>
                             <input type="email" class="form-control" id="email" placeholder="Enter email"
                                    th:field="*{email}">
+                            <p th:if= "${#fields.hasErrors('email')}" th:errors= "*{email}" >Email Error</p>
                         </div>
                         <div class="form-group">
                             <label for="birthdate">Birthdate</label>
                             <input type="date" class="form-control" id="birthdate" placeholder="Enter birthdate"
                                    th:field="*{birthdate}">
+                            <p th:if= "${#fields.hasErrors('birthdate')}" th:errors= "*{birthdate}" >Birthdate Error</p>
                         </div>
                         <div class="form-group">
                             <label for="gender">Gender</label>

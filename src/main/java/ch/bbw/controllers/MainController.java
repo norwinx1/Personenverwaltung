@@ -3,15 +3,21 @@ package ch.bbw.controllers;
 import ch.bbw.entities.Person;
 import ch.bbw.services.PersonService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.validation.Valid;
 
 @Controller
 @AllArgsConstructor
-public class MainController {
+@Slf4j
+public class MainController implements WebMvcConfigurer {
     private PersonService personService;
 
     @GetMapping("/persons")
@@ -27,7 +33,10 @@ public class MainController {
     }
 
     @PostMapping("/person")
-    public String addNewPerson(@ModelAttribute @Valid Person person) {
+    public String addNewPerson(@Valid Person person, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "person";
+        }
         personService.addPerson(person);
         return "redirect:/persons";
     }
@@ -36,13 +45,6 @@ public class MainController {
     public String person(Model model, @PathVariable int id) {
         model.addAttribute("person", personService.getPerson(id));
         return "person";
-    }
-
-    @PostMapping("/person/{id}")
-    public String changePerson(@ModelAttribute @Valid Person person, @PathVariable int id) {
-        person.setId(id);
-        personService.addPerson(person);
-        return "redirect:/persons";
     }
 
     @PostMapping("/person/{id}/delete")
