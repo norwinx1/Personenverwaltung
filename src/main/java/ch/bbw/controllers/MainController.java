@@ -21,19 +21,19 @@ public class MainController implements WebMvcConfigurer {
     private PersonService personService;
 
     @GetMapping("/persons")
-    public String persons(Model model) {
+    public String getPersons(Model model) {
         model.addAttribute("persons", personService.getPersons());
         return "persons";
     }
 
     @GetMapping("/person")
-    public String newPerson(Model model) {
+    public String newPersonView(Model model) {
         model.addAttribute("person", new Person());
         return "person";
     }
 
     @PostMapping("/person")
-    public String addNewPerson(@Valid Person person, BindingResult bindingResult) {
+    public String changeOrAddPerson(@Valid Person person, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "person";
         }
@@ -42,7 +42,7 @@ public class MainController implements WebMvcConfigurer {
     }
 
     @GetMapping("/persons/{id}")
-    public String person(Model model, @PathVariable int id) {
+    public String getPerson(Model model, @PathVariable int id) {
         model.addAttribute("person", personService.getPerson(id));
         return "person";
     }
