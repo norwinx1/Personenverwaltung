@@ -56,10 +56,10 @@
                         </div>
                         <button type="reset" onclick="location.href='/persons';" class="btn btn-secondary">Cancel
                         </button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        <button type="button" th:class="${person.id}? 'btn btn-danger float-right' : 'hidden'"
+                        <button type="button" th:class="${person.id}? 'btn btn-danger' : 'hidden'"
                                 data-toggle="modal" data-target="#modal">Delete
                         </button>
+                        <button type="submit" class="btn btn-primary float-right">Submit</button>
                     </form>
                 </div>
             </div>
