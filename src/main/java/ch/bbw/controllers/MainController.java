@@ -20,6 +20,11 @@ import javax.validation.Valid;
 public class MainController implements WebMvcConfigurer {
     private PersonService personService;
 
+    @GetMapping("/")
+    public String redirect() {
+        return "redirect:/persons";
+    }
+
     @GetMapping("/persons")
     public String getPersons(Model model) {
         model.addAttribute("persons", personService.getPersons());
