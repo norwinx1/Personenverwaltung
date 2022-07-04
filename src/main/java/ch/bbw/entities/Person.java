@@ -1,5 +1,6 @@
 package ch.bbw.entities;
 
+import ch.bbw.validation.BirthdateConstraint;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -22,12 +23,12 @@ public class Person {
             = "Lastname must be between 2 and 30 characters")
     private String lastname;
 
+    @NotBlank(message = "Email should not be blank")
     @Email(message = "Email should be valid")
     private String email;
 
     @Temporal(TemporalType.DATE)
-    @Past(message = "Birthdate should be in the past")
-    @NotNull(message = "Birthdate should not be null")
+    @BirthdateConstraint(message = "Birthdate should be before 2005")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthdate;
 
