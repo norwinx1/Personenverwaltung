@@ -15,7 +15,7 @@ public class BirthdateValidator implements
     @Override
     public boolean isValid(Date birthdate,
                            ConstraintValidatorContext cxt) {
-        return birthdate != null && birthdate.before(Date.from(Instant.parse("2005-01-01T00:00:00.00Z")));
+        return birthdate != null && birthdate.before(Date.from(Instant.parse("2004-12-31T00:00:00.00Z")));
     }
 
 }
