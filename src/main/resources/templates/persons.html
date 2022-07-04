@@ -1,12 +1,10 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
     <head>
         <title>Personenverwaltung</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="description" content="Personenverwaltung" />
-        <meta name="author" content="BBW RL" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="description" content="Personenverwaltung"/>
 
         <!-- Bootstrap core CSS -->
         <link rel="stylesheet" th:href="@{/bootstrap-4.1.3/css/bootstrap.min.css}"/>
@@ -17,14 +15,34 @@
                 <div class="col-12">
                     <br/>
                     <h1>Personenverwaltung</h1>
-                    <h2><a href="/person">Neue Person erstellen</a></h2>
 
-                    <div th:each="person : ${persons}">
-                        <a th:href="@{/persons/{id}(id = ${person.id})}"><h3 th:text="${person.firstname + ' ' + person.lastname}"></h3></a>
-                        <p th:text="${person.email}"></p>
-                        <p th:text="${person.birthdate}"></p>
-                        <p th:text="${person.gender}"></p>
-                    </div>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Birthdate</th>
+                            <th>Gender</th>
+                            <th>Edit</th>
+                        </tr>
+                        </thead>
+                        <tbody th:each="person : ${persons}">
+                        <tr>
+                            <td th:text="${person.firstname + ' ' + person.lastname}"></td>
+                            <td th:text="${person.email}"></td>
+                            <td th:text="${person.birthdate}"></td>
+                            <td th:text="${person.gender}"></td>
+                            <td>
+                                <a th:href="@{/persons/{id}(id = ${person.id})}">
+                                    <button type="button" class="btn btn-primary">Edit</button>
+                                </a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <a href="/person">
+                        <button type="button" class="btn btn-primary">Add person</button>
+                    </a>
                 </div>
             </div>
         </div>
